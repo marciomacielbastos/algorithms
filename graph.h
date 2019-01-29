@@ -10,7 +10,7 @@ private:
     unsigned int numberOfVertices;
     unsigned int numberOfEdges;
     bool directed;
-    std::vector<std::vector<long int> > adjacencyList;
+    std::vector<std::vector<unsigned long int> > adjacencyList;
 
 public:
     Graph(unsigned int numberOfVertices);

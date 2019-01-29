@@ -4,7 +4,7 @@ Graph::Graph(unsigned int numberOfVertices):directed(false){
     this->numberOfVertices = numberOfVertices;
     this->numberOfEdges = 0;
     for(unsigned int i=0; i<numberOfVertices; i++){
-        std::vector<long int> newAdjacencies;
+        std::vector<unsigned long int> newAdjacencies;
         newAdjacencies.push_back(0);
         this->adjacencyList.push_back(newAdjacencies);
     }
@@ -15,7 +15,7 @@ Graph::Graph(unsigned int numberOfVertices, bool directed){
     this->numberOfEdges = 0;
     this->directed = directed;
     for(unsigned int i=0; i<numberOfVertices; i++){
-        std::vector<long int> newAdjacencies;
+        std::vector<unsigned long int> newAdjacencies;
         newAdjacencies.push_back(0);
         this->adjacencyList.push_back(newAdjacencies);
     }
@@ -28,7 +28,7 @@ Graph::Graph(const std::string& file):directed(false){
     infile >> this->numberOfEdges;
     this->numberOfEdges = 0;
     for(unsigned int i=0; i<numberOfVertices; i++){
-        std::vector<long int> newAdjacencies;
+        std::vector<unsigned long int> newAdjacencies;
         newAdjacencies.push_back(0);
         this->adjacencyList.push_back(newAdjacencies);
     }
@@ -46,7 +46,7 @@ Graph::Graph(const std::string& file, bool directed){
     infile >> this->numberOfEdges;
     this->numberOfEdges = 0;
     for(unsigned int i=0; i<numberOfVertices; i++){
-        std::vector<long int> newAdjacencies;
+        std::vector<unsigned long int> newAdjacencies;
         newAdjacencies.push_back(0);
         this->adjacencyList.push_back(newAdjacencies);
     }
