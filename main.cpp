@@ -13,13 +13,16 @@ std::vector<long> tests(std::vector<long>& d){
 }
 
 int main(){
-    std::string file("/home/marcio/MEGA/Physics/tinyCG.txt");
+    std::string file("/home/marcim/MEGA/Physics/tinyCG.txt");
     Graph g(file);
     std::cout<<g.ToString();
-    unsigned int a = 2;
-    unsigned long int mask= (1 << a);
+//    unsigned int a = 2;
+//    unsigned long int mask= (1 << a);
     DepthFirstSearch h = DepthFirstSearch(g,0);
-    std::cout<< mask;
+    std::vector<unsigned int> path = h.PathTo(5);
+    for(std::vector<unsigned int>::iterator it = path.begin(); it != path.end(); ++it) {
+        std::cout<<*it<<' ';
+    }
 //    std::cout<<g.DegreeOf(11)<<std::endl;
 
 //    unsigned long int test = (~0) ^ (1<<30);

@@ -46,5 +46,6 @@ std::vector<unsigned int> DepthFirstSearch::PathTo(unsigned int v){
     for (unsigned int x = v; x!=this->root; x = this->upperVertice[x]) {
         path.push_back(x);
     }
+    path.push_back(this->root);
     return path;
 }
