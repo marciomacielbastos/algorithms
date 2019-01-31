@@ -1,6 +1,6 @@
 #include "unionfind.h"
 
-UnionFind::UnionFind(int N){
+UnionFind::UnionFind(unsigned int N){
     this->count = N;
     for(unsigned int i=0; i < N;i++){
         this->id.push_back(i);

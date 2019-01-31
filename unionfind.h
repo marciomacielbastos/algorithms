@@ -9,7 +9,7 @@ private:
     std::vector<unsigned int> sizes;
     int count;
 public:
-    UnionFind(int N);
+    UnionFind(unsigned int N);
     void Union(unsigned int v, unsigned int w);
     unsigned int Find(unsigned int v);
     unsigned int GetCount();
