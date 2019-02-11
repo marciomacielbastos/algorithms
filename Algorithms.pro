@@ -18,7 +18,8 @@ SOURCES += \
         main.cpp \
     graph.cpp \
     unionfind.cpp \
-    depthfirstsearch.cpp
+    depthfirstsearch.cpp \
+    breadthfirstsearch.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -28,4 +29,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     graph.h \
     unionfind.h \
-    depthfirstsearch.h
+    depthfirstsearch.h \
+    breadthfirstsearch.h

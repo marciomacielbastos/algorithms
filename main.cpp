@@ -1,8 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 #include <graph.h>
 #include <depthfirstsearch.h>
+#include <breadthfirstsearch.h>
 //#include <cstdlib>
 //#include <heap.h>
 //#include <ctime>
@@ -18,11 +20,20 @@ int main(){
     std::cout<<g.ToString();
 //    unsigned int a = 2;
 //    unsigned long int mask= (1 << a);
-    DepthFirstSearch h = DepthFirstSearch(g,0);
-    std::vector<unsigned int> path = h.PathTo(5);
+    DepthFirstSearch d = DepthFirstSearch(g,0);
+    BreadthFirstSearch b = BreadthFirstSearch(g, 0);
+    std::vector<unsigned int> path = d.PathTo(5);
+    std::reverse(path.begin(),path.end());
     for(std::vector<unsigned int>::iterator it = path.begin(); it != path.end(); ++it) {
         std::cout<<*it<<' ';
     }
+    std::cout<<std::endl;
+    path = b.PathTo(5);
+    std::reverse(path.begin(),path.end());
+    for(std::vector<unsigned int>::iterator it = path.begin(); it != path.end(); ++it) {
+        std::cout<<*it<<' ';
+    }
+    std::cout<<std::endl;
 //    std::cout<<g.DegreeOf(11)<<std::endl;
 
 //    unsigned long int test = (~0) ^ (1<<30);
