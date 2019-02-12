@@ -15,20 +15,23 @@ std::vector<long> tests(std::vector<long>& d){
 }
 
 int main(){
-    std::string file("/home/marcim/MEGA/Physics/tinyCG.txt");
+    std::string file("/home/marcim/MEGA/Physics/tinyDG.txt");
     Graph g(file);
     std::cout<<g.ToString();
 //    unsigned int a = 2;
 //    unsigned long int mask= (1 << a);
-    DepthFirstSearch d = DepthFirstSearch(g,0);
-    BreadthFirstSearch b = BreadthFirstSearch(g, 0);
-    std::vector<unsigned int> path = d.PathTo(5);
-    std::reverse(path.begin(),path.end());
-    for(std::vector<unsigned int>::iterator it = path.begin(); it != path.end(); ++it) {
-        std::cout<<*it<<' ';
-    }
+    DepthFirstSearch d = DepthFirstSearch(g);
+    BreadthFirstSearch b = BreadthFirstSearch(g, 6);
+    std::cout<<"Is 0 and 6 connected?"<<d.IsConnected(7,6)<<std::endl;
+    std::cout<<"Number of Components: "<<d.NumberOfComponents()<<std::endl;
+    std::cout<<"Components of "<<0<<": "<<d.ComponentId(0)<<std::endl;
+//    std::vector<unsigned int> path = d.PathTo(7);
+//    std::reverse(path.begin(),path.end());
+//    for(std::vector<unsigned int>::iterator it = path.begin(); it != path.end(); ++it) {
+//        std::cout<<*it<<' ';
+//    }
     std::cout<<std::endl;
-    path = b.PathTo(5);
+    std::vector<unsigned int> path = b.PathTo(7);
     std::reverse(path.begin(),path.end());
     for(std::vector<unsigned int>::iterator it = path.begin(); it != path.end(); ++it) {
         std::cout<<*it<<' ';
