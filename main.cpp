@@ -17,6 +17,10 @@ std::vector<long> tests(std::vector<long>& d){
 int main(){
     std::string file("/home/marcim/MEGA/Physics/tinyDG.txt");
     Graph g(file);
+    unsigned long int test = 1;
+    unsigned long int test2 = 1;
+    test <<= 33;
+    std::cout<<test<<std::endl;
     std::cout<<g.ToString();
 //    unsigned int a = 2;
 //    unsigned long int mask= (1 << a);
