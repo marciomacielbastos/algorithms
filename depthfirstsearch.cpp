@@ -1,16 +1,40 @@
 #include "depthfirstsearch.h"
 
-DepthFirstSearch::DepthFirstSearch(Graph g, unsigned int r):marked(0),color(0),count(0),hasCycle(false),isBipartite(true),root(r) {
-    std::vector<unsigned int> temp(g.NumberOfVertices());
-    this->upperVertice = temp;
-    Dfs(g, r, r);
+//DepthFirstSearch::DepthFirstSearch(Graph g, unsigned int r):marked(0),color(0),count(0),hasCycle(false),isBipartite(true),root(r) {
+//    std::vector<unsigned int> temp(g.NumberOfVertices());
+//    this->upperVertice = temp;
+//    Dfs(g, r, r);
+//}
+
+//DepthFirstSearch::DepthFirstSearch(Graph g):marked(0),color(0),count(0),id(0),hasCycle(false),isBipartite(true),root(0) {
+//    std::vector<unsigned int> temp(g.NumberOfVertices());
+//    this->upperVertice = temp;
+//    std::vector<unsigned int> temp1(g.NumberOfVertices());
+//    this->componentId = temp1;
+//    for (unsigned int v=0; v < g.NumberOfVertices(); v++) {
+//        if(!IsMarked(v)){
+//            Dfs(g, v, v);
+//            this->id++;
+//        }
+//    }
+//}
+
+void DepthFirstSearch::StartVectors(Graph g){
+    std::vector<bool> marked(g.NumberOfVertices());
+    std::vector<unsigned int> upperVertice(g.NumberOfVertices());
+    std::vector<unsigned int> componentId(g.NumberOfVertices());
+    this->marked = marked;
+    this->upperVertice = upperVertice;
+    this->componentId = componentId;
 }
 
-DepthFirstSearch::DepthFirstSearch(Graph g):marked(0),color(0),count(0),id(0),hasCycle(false),isBipartite(true),root(0) {
-    std::vector<unsigned int> temp(g.NumberOfVertices());
-    this->upperVertice = temp;
-    std::vector<unsigned int> temp1(g.NumberOfVertices());
-    this->componentId = temp1;
+DepthFirstSearch::DepthFirstSearch(Graph g, unsigned int r):count(0),root(r) {
+    StartVectors(g);
+    Dfs(g, r);
+}
+
+DepthFirstSearch::DepthFirstSearch(Graph g):count(0),hasCycle(false),isBipartite(true),root(0) {
+    StartVectors(g);
     for (unsigned int v=0; v < g.NumberOfVertices(); v++) {
         if(!IsMarked(v)){
             Dfs(g, v, v);
@@ -19,21 +43,41 @@ DepthFirstSearch::DepthFirstSearch(Graph g):marked(0),color(0),count(0),id(0),ha
     }
 }
 
-unsigned long int DepthFirstSearch::Mask(unsigned int v) {
-    unsigned long int mask = (1 << v);
-    return mask;
-}
+//unsigned long int DepthFirstSearch::Mask(unsigned int v) {
+//    unsigned long int mask = (1 << v);
+//    return mask;
+//}
+
+//void DepthFirstSearch::Mark(unsigned int v) {
+//    this->marked |= Mask(v);
+//}
+
+//bool DepthFirstSearch::IsMarked(unsigned int v) {
+//    return (this->marked & Mask(v));
+//}
 
 void DepthFirstSearch::Mark(unsigned int v) {
-    this->marked |= Mask(v);
+    this->marked[v] = true;
 }
 
 bool DepthFirstSearch::IsMarked(unsigned int v) {
-    return (this->marked & Mask(v));
+    return this->marked[v];
 }
 
 bool DepthFirstSearch::HasPathTo(unsigned int v) {
     return this->IsMarked(v);
+}
+
+void DepthFirstSearch::Dfs(Graph g, unsigned int v) {
+    Mark(v);
+    this->count++;
+    std::vector<unsigned int> adjacent_vertices = g.AdjcentVerticesTo(v);
+    for (std::vector<unsigned int>::iterator u = adjacent_vertices.begin() ; u != adjacent_vertices.end(); ++u){
+        if(!IsMarked(*u)){
+            this->upperVertice[*u] = v;
+            Dfs(g, *u);
+        }
+    }
 }
 
 void DepthFirstSearch::Dfs(Graph g, unsigned int v, unsigned int w) {

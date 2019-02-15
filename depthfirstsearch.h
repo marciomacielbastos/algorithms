@@ -6,18 +6,21 @@
 
 class DepthFirstSearch{
 private:
-    unsigned long int marked;
+//    unsigned long int marked;
     unsigned long int color;
     unsigned int count;
     unsigned int id;
     bool hasCycle;
     bool isBipartite;
+    std::vector<bool> marked;
     std::vector<unsigned int> componentId;
     std::vector<unsigned int> upperVertice;
     const unsigned int root;
 
+    void StartVectors(Graph g);
     unsigned long int Mask(unsigned int v);
     void Mark(unsigned int v);
+    void Dfs(Graph g, unsigned int v);
     void Dfs(Graph g, unsigned int v, unsigned int w);
 
 public:
