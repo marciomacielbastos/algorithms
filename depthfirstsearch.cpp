@@ -21,19 +21,15 @@
 
 void DepthFirstSearch::StartVectors(Graph g){
     std::vector<bool> marked(g.NumberOfVertices());
-    std::vector<unsigned int> upperVertice(g.NumberOfVertices());
-    std::vector<unsigned int> componentId(g.NumberOfVertices());
     this->marked = marked;
-    this->upperVertice = upperVertice;
+    std::vector<unsigned int> componentId(g.NumberOfVertices());
     this->componentId = componentId;
+    for(unsigned int i = 0; i < g.NumberOfVertices(); i++){
+        this->upperVertice.push_back(i);
+    }
 }
 
-DepthFirstSearch::DepthFirstSearch(Graph g, unsigned int r):count(0),root(r) {
-    StartVectors(g);
-    Dfs(g, r);
-}
-
-DepthFirstSearch::DepthFirstSearch(Graph g):count(0),hasCycle(false),isBipartite(true),root(0) {
+DepthFirstSearch::DepthFirstSearch(Graph g):count(0),id(0),hasCycle(false),isBipartite(true),root(0) {
     StartVectors(g);
     for (unsigned int v=0; v < g.NumberOfVertices(); v++) {
         if(!IsMarked(v)){
@@ -41,6 +37,11 @@ DepthFirstSearch::DepthFirstSearch(Graph g):count(0),hasCycle(false),isBipartite
             this->id++;
         }
     }
+}
+
+DepthFirstSearch::DepthFirstSearch(Graph g, unsigned int r):count(0),root(r) {
+    StartVectors(g);
+    Dfs(g, r);
 }
 
 //unsigned long int DepthFirstSearch::Mask(unsigned int v) {
@@ -105,13 +106,19 @@ unsigned int DepthFirstSearch::Count() {
 
 std::vector<unsigned int> DepthFirstSearch::PathTo(unsigned int v) {
     std::vector<unsigned int> path;
+    unsigned int upperVertice = this->upperVertice[v];
     if(!HasPathTo(v)){
         return path;
     }
-    for (unsigned int x = v; x!=this->root; x = this->upperVertice[x]) {
-        path.push_back(x);
-    }
-    path.push_back(this->root);
+    unsigned int currentVertice = v;
+    while(currentVertice != this->upperVertice[currentVertice]){
+        path.push_back(currentVertice);
+        currentVertice = this->upperVertice[currentVertice];
+    } path.push_back(currentVertice);
+//    for (unsigned int x = v; x!=this->root; x = this->upperVertice[x]) {
+//        path.push_back(x);
+//    }
+//    path.push_back(this->root);
     return path;
 }
 
