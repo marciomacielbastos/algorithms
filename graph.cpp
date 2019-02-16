@@ -74,8 +74,8 @@ void Graph::AddDirectedEdge(unsigned int v, unsigned int w){
     if(this->IsConnected(v, w)) return;
     unsigned int box, slot;
     unsigned int key = 1;
-    box = w/36;
-    slot = w%36;
+    box = w/32;
+    slot = w%32;
     if(adjacencyList[v].size() < box){
         for(unsigned int i=0; i < (box - adjacencyList[v].size()); i++){
             adjacencyList[v].push_back(0);
@@ -103,15 +103,16 @@ void Graph::AddEdge(unsigned int v, unsigned int w){
 bool Graph::IsConnected(unsigned v, unsigned w){
     unsigned int box, slot;
     unsigned int key = 1;
-    box = w/36;
-    slot = w%36;
+    box = w/32;
+    slot = w%32;
     key<<=slot;
-    return this->adjacencyList[v][box] & key;
+    bool isConnected = (this->adjacencyList[v][box] & key);
+    return isConnected;
 }
 
 std::vector<unsigned int> Graph::AdjcentVerticesTo(unsigned int v){
     std::vector<unsigned int> adjacentVertices;
-    for(unsigned int i=0; i < this->NumberOfEdges(); i++){
+    for(unsigned int i=0; i < this->NumberOfVertices(); i++){
         if(this->IsConnected(v, i)){
             adjacentVertices.push_back(i);
         }

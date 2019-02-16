@@ -27,6 +27,8 @@ void DepthFirstSearch::StartVectors(Graph g){
     for(unsigned int i = 0; i < g.NumberOfVertices(); i++){
         this->upperVertice.push_back(i);
     }
+    std::vector<bool> colors(g.NumberOfVertices());
+    this->colors = colors;
 }
 
 DepthFirstSearch::DepthFirstSearch(Graph g):count(0),id(0),hasCycle(false),isBipartite(true),root(0) {
@@ -89,14 +91,13 @@ void DepthFirstSearch::Dfs(Graph g, unsigned int v, unsigned int w) {
     for (std::vector<unsigned int>::iterator u = adjacent_vertices.begin() ; u != adjacent_vertices.end(); ++u){
         if(!IsMarked(*u)){
             this->upperVertice[*u] = v;
+            this->colors[*u] = !this->colors[v];
             Dfs(g, *u, v);
         }
-        else if (w != *u) {
+        else if (w != *u){
             this->hasCycle=true;
         }
-//        else if () {
-
-//        }
+        else if ((this->colors[w] == this->colors[v]) & this->isBipartite ) this->isBipartite = false;
     }
 }
 
@@ -115,10 +116,12 @@ std::vector<unsigned int> DepthFirstSearch::PathTo(unsigned int v) {
         path.push_back(currentVertice);
         currentVertice = this->upperVertice[currentVertice];
     } path.push_back(currentVertice);
+    
 //    for (unsigned int x = v; x!=this->root; x = this->upperVertice[x]) {
 //        path.push_back(x);
 //    }
 //    path.push_back(this->root);
+    
     return path;
 }
 
@@ -136,4 +139,8 @@ unsigned int DepthFirstSearch::NumberOfComponents(){
 
 bool DepthFirstSearch::HasCycle(){
     return this->hasCycle;
+}
+
+bool DepthFirstSearch::IsBipartite(){
+    return this->isBipartite;
 }

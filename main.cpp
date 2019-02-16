@@ -5,6 +5,7 @@
 #include <graph.h>
 #include <depthfirstsearch.h>
 #include <breadthfirstsearch.h>
+#include <string>
 //#include <cstdlib>
 //#include <heap.h>
 //#include <ctime>
@@ -15,7 +16,7 @@ std::vector<long> tests(std::vector<long>& d){
 }
 
 int main(){
-    std::string file("/home/marcio/MEGA/Physics/tinyDG.txt");
+    std::string file("/home/marcio/MEGA/Physics/tinyBG.txt");
     Graph g(file);
     unsigned long int test = 1;
     unsigned long int test2 = 1;
@@ -29,6 +30,12 @@ int main(){
     std::cout<<"Is 0 and 6 connected?"<<d.IsConnected(0,6)<<std::endl;
     std::cout<<"Number of Components: "<<d.NumberOfComponents()<<std::endl;
     std::cout<<"Components of "<<6<<": "<<d.ComponentId(6)<<std::endl;
+    std::cout<<"Is Bipartite? "<<d.IsBipartite()<<std::endl;
+    bool hasCycle = d.HasCycle();
+    std::string txt;
+    if(hasCycle) txt = "yes";
+    else txt = "no";
+    std::cout<<"Has cycle: "<<txt<<std::endl;
     std::vector<unsigned int> path = d.PathTo(5);
     std::reverse(path.begin(),path.end());
     for(std::vector<unsigned int>::iterator it = path.begin(); it != path.end(); ++it) {

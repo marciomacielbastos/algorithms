@@ -7,12 +7,13 @@
 class DepthFirstSearch{
 private:
 //    unsigned long int marked;
-    unsigned long int color;
+
     unsigned int count;
     unsigned int id;
     bool hasCycle;
     bool isBipartite;
     std::vector<bool> marked;
+    std::vector<bool> colors;
     std::vector<unsigned int> componentId;
     std::vector<unsigned int> upperVertice;
     const unsigned int root;
@@ -25,6 +26,7 @@ private:
 
 public:
     bool IsMarked(unsigned int v);
+    bool IsBipartite();
     bool HasPathTo(unsigned int v);
     DepthFirstSearch(Graph g);
     DepthFirstSearch(Graph g, unsigned int r);
