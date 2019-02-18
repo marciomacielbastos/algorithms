@@ -6,10 +6,12 @@
 
 class BreadthFirstSearch{
 private:
-    unsigned long int marked;
+//    unsigned long int marked;
+    std::vector<bool> marked;
     std::vector<unsigned int> upperVertice;
     const unsigned int root;
 
+    void StartVectors(Graph g);
     unsigned long int Mask(unsigned int v);
     void Mark(unsigned int v);
     void Bfs(Graph g, unsigned r);

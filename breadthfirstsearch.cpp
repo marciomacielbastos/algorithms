@@ -1,22 +1,37 @@
 #include "breadthfirstsearch.h"
 
-BreadthFirstSearch::BreadthFirstSearch(Graph g, unsigned int r):marked(0), root(r){
-    std::vector<unsigned int> temp(g.NumberOfVertices());
-    this->upperVertice = temp;
+void BreadthFirstSearch::StartVectors(Graph g){
+    std::vector<bool> marked(g.NumberOfVertices());
+    this->marked = marked;
+    for(unsigned int i = 0; i < g.NumberOfVertices(); i++){
+        this->upperVertice.push_back(i);
+    }
+}
+
+BreadthFirstSearch::BreadthFirstSearch(Graph g, unsigned int r):root(r){
+    StartVectors(g);
     Bfs(g, r);
 }
 
-unsigned long int BreadthFirstSearch::Mask(unsigned int v){
-    unsigned long int mask = (1 << v);
-    return mask;
+//unsigned long int BreadthFirstSearch::Mask(unsigned int v){
+//    unsigned long int mask = (1 << v);
+//    return mask;
+//}
+
+//void BreadthFirstSearch::Mark(unsigned int v){
+//    this->marked |= Mask(v);
+//}
+
+//bool BreadthFirstSearch::IsMarked(unsigned int v){
+//    return (this->marked & Mask(v));
+//}
+
+void BreadthFirstSearch::Mark(unsigned int v) {
+    this->marked[v] = true;
 }
 
-void BreadthFirstSearch::Mark(unsigned int v){
-    this->marked |= Mask(v);
-}
-
-bool BreadthFirstSearch::IsMarked(unsigned int v){
-    return (this->marked & Mask(v));
+bool BreadthFirstSearch::IsMarked(unsigned int v) {
+    return this->marked[v];
 }
 
 void BreadthFirstSearch::Bfs(Graph g, unsigned int r){
