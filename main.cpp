@@ -30,7 +30,7 @@ int main()
     while (in.good())
     {
         getline(in, a);
-        ss << a;
+        ss <<a;
         getline(ss, b, ':');
         cout << b << " ";
         getline(ss, b, ':');

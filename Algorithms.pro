@@ -19,7 +19,8 @@ SOURCES += \
     graph.cpp \
     unionfind.cpp \
     depthfirstsearch.cpp \
-    breadthfirstsearch.cpp
+    breadthfirstsearch.cpp \
+    symbolgraph.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -30,4 +31,5 @@ HEADERS += \
     graph.h \
     unionfind.h \
     depthfirstsearch.h \
-    breadthfirstsearch.h
+    breadthfirstsearch.h \
+    symbolgraph.h
