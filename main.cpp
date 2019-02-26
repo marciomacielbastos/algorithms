@@ -32,8 +32,10 @@ int main()
         getline(in, a);
         ss << a;
         getline(ss, b, ':');
+        cout << b << " ";
         getline(ss, b, ':');
         cout << b << " ";
+        ss.clear();
     }
 
     in.close();
