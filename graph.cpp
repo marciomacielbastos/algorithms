@@ -36,6 +36,7 @@ Graph::Graph(const std::string& file):directed(false){
     {
         this->AddEdge(a,b);
     }
+    infile.close();
 }
 
 Graph::Graph(const std::string& file, bool directed){
@@ -53,6 +54,7 @@ Graph::Graph(const std::string& file, bool directed){
     while (infile >> a >> b){
         this->AddEdge(a,b);
     }
+    infile.close();
 }
 
 bool Graph::IsDirected(){
