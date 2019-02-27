@@ -7,6 +7,8 @@
 #include <breadthfirstsearch.h>
 #include <string>
 #include <sstream>
+#include <map>
+#include <symbolgraph.h>
 //#include <cstdlib>
 //#include <heap.h>
 //#include <ctime>
@@ -20,27 +22,33 @@ using namespace std;
 
 int main()
 {
-    ifstream in;
-    string a, b;
-    string c, d;
-    stringstream ss;
-    in.open("/home/marcim/MEGA/Physics/text.txt",ios::in);
-    getline(in, a);
-    getline(in, b);
-    while (in.good())
-    {
-        getline(in, a);
-        ss <<a;
-        getline(ss, b, ':');
-        cout << b << " ";
-        getline(ss, b, ':');
-        cout << b << " ";
-        ss.clear();
-    }
-
-    in.close();
+    std::string file("/home/marcim/MEGA/Physics/text.txt");
+    SymbolGraph sg(file, ':');
+//    std::map<char,int> mymap;
+//    std::map<char,int>::iterator it = mymap.begin();
+//    mymap.insert (it, std::pair<char,int>('b',300));  // max efficiency inserting
+//    mymap.insert (it, std::pair<char,int>('b',400));
+//    mymap.insert (it, std::pair<char,int>('c',400));
+//    mymap.insert (it, std::pair<char,int>('b',100));
+//    ifstream in;
+//    string a, b;
+//    string c, d;
+//    stringstream ss;
+//    in.open("/home/marcim/MEGA/Physics/text.txt",ios::in);
+//    getline(in, a);
+//    getline(in, b);
+//    while (in.good())
+//    {
+//        getline(in, a);
+//        ss <<a;
+//        getline(ss, b, ':');
+//        cout << b << " ";
+//        getline(ss, b);
+//        cout << b << " ";
+//        ss.clear();
+//    }
+//    in.close();
 }
-
 //int main(){
 //    std::string file("/home/marcim/MEGA/Physics/tinyDG.txt");
 //    Graph g(file);

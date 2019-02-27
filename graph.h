@@ -4,8 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-class Graph
-{
+class Graph{
 private:
     unsigned int numberOfVertices;
     unsigned int numberOfEdges;
@@ -13,6 +12,7 @@ private:
     std::vector<std::vector<unsigned long int> > adjacencyList;
 
 public:
+    Graph();
     Graph(unsigned int numberOfVertices);
     Graph(unsigned int numberOfVertices, bool directed);
     Graph(const std::string& file);
@@ -26,8 +26,8 @@ public:
     bool IsConnected(unsigned int v, unsigned int w);
     std::vector<unsigned int> AdjcentVerticesTo(unsigned int v);
     std::string ToString();
-    unsigned long DegreeOf(unsigned int v);
-    unsigned long MaximumDegree();
+    unsigned long int DegreeOf(unsigned int v);
+    unsigned long int MaximumDegree();
     float AverageDegree();
     unsigned int NumberOfSelfLoops();
 };

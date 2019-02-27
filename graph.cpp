@@ -1,5 +1,6 @@
 #include "graph.h"
 
+Graph::Graph(){}
 Graph::Graph(unsigned int numberOfVertices):directed(false){
     this->numberOfVertices = numberOfVertices;
     this->numberOfEdges = 0;
@@ -122,13 +123,13 @@ std::vector<unsigned int> Graph::AdjcentVerticesTo(unsigned int v){
     return adjacentVertices;
 }
 
-unsigned long Graph::DegreeOf(unsigned int v){
+unsigned long int Graph::DegreeOf(unsigned int v){
     std::vector<unsigned int> adjV = this->AdjcentVerticesTo(v);
     unsigned long degree = adjV.size();
     return degree;
 }
 
-unsigned long Graph::MaximumDegree(){
+unsigned long int Graph::MaximumDegree(){
     unsigned long max = 0;
     unsigned long degree;
     for(unsigned int v=0; v < this->NumberOfVertices(); v++){

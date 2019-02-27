@@ -2,8 +2,7 @@
 #define UNIONFIND_H
 #include <vector>
 
-class UnionFind
-{
+class UnionFind{
 private:
     std::vector<unsigned int> id;
     std::vector<unsigned int> sizes;
