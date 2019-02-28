@@ -10,6 +10,8 @@ private:
     unsigned int numberOfEdges;
     bool directed;
     std::vector<std::vector<unsigned long int> > adjacencyList;
+    void AddUndirectedEdge(unsigned int v, unsigned int w);
+    void AddDirectedEdge(unsigned int v, unsigned int w);
 
 public:
     Graph();
@@ -21,8 +23,6 @@ public:
     unsigned int NumberOfVertices();
     unsigned int NumberOfEdges();
     void AddEdge(unsigned int v, unsigned int w);
-    void AddUndirectedEdge(unsigned int v, unsigned int w);
-    void AddDirectedEdge(unsigned int v, unsigned int w);
     bool IsConnected(unsigned int v, unsigned int w);
     std::vector<unsigned int> AdjcentVerticesTo(unsigned int v);
     std::string ToString();

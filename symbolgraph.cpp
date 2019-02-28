@@ -2,17 +2,34 @@
 
 SymbolGraph::SymbolGraph(const std::string& file, char delim):g(Graph()){
     std::ifstream in;
-    std::string a, b;
+    std::string line, value;
     std::stringstream ss;
+    unsigned int v, w;
     std::pair<std::map<std::string, unsigned int>::iterator,bool> ret;
     in.open(file,std::ios::in);
     unsigned int key = 0;
     while (in.good()) {
-        getline(in, a);
-        ss << a;
-        if(a.size() > 0) StringStreamToMap(ss, &key, delim, &ret);
+        getline(in, line);
+        ss << line;
+        if (line.size() > 0) StringStreamToMap(ss, &key, delim, &ret);
         ss.clear();
     }
+    in.clear();
+    in.seekg(0);
+    Graph g(key);
+    while (in.good()){
+        getline(in, line);
+        if (line.size() > 0){
+            ss << line;
+            getline(ss, value, delim);
+            v = this->stringMap.find(value)->second;
+            getline(ss, value);
+            w = this->stringMap.find(value)->second;
+            g.AddEdge(v, w);
+            ss.clear();
+        }
+    }
+    this->g = g;
     in.close();
 }
 
